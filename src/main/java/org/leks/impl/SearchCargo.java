@@ -13,46 +13,46 @@ public  class SearchCargo  {
 
     public static String getResultSearch(CargoFilterImpl filter) throws IOException {
 
-        String data = URLEncoder.encode("ctl00_tksm_HiddenField", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getHiddenField(), "UTF-8");
-        data += "&" + URLEncoder.encode("__EVENTTARGET", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getEventTarget(), "UTF-8");
-        data += "&" + URLEncoder.encode("__EVENTARGUMENT", "UTF-8")
+        String data = URLEncoder.encode("ctl00_tksm_HiddenField", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getHiddenField(), "windows-1251");
+        data += "&" + URLEncoder.encode("__EVENTTARGET", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getEventTarget(), "windows-1251");
+        data += "&" + URLEncoder.encode("__EVENTARGUMENT", "windows-1251")
                 + "=" + URLEncoder.encode(filter.getEventArgument(), "windows-1251");
         data += "&" + URLEncoder.encode("__VIEWSTATE", "windows-1251")
-                + "=" + URLEncoder.encode(filter.getState(), "UTF-8");
+                + "=" + URLEncoder.encode(filter.getState(), "windows-1251");
         data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$atxtFromGeo$txtAutoComplete", "windows-1251")
                 + "=" + URLEncoder.encode(filter.getFromGeo(), "windows-1251");
         data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$atxtFromGeo$hdnSelectedValue", "windows-1251")
                 + "=" + URLEncoder.encode("0", "windows-1251");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtFromGeoRadius", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getFromGeoRadius(), "UTF-8");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtFromGeoRadius", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getFromGeoRadius(), "windows-1251");
         data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$atxtToGeo$txtAutoComplete", "windows-1251")
                 + "=" + URLEncoder.encode(filter.getToGeo(), "windows-1251");
         data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$atxtToGeo$hdnSelectedValue", "windows-1251")
                 + "=" + URLEncoder.encode("0", "windows-1251");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtToGeoRadius", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getToGeoRadius(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtWeightFrom", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getWeightFrom(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtWeightTo", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getWeightTo(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtVolumeFrom", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getVolumeFrom(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtVolumeTo", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getVolumeTo(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$mselCarTypes$hdnSelItems", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getCarTypes(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$mselLoadTypes$hdnSelItems", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getLoadTypes(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtFirstDate", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getFirstDateDay(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$ddlFirstDate", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getFirstDateMonth(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtLastDate", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getLastDateDay(), "UTF-8");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$ddlLastDate", "UTF-8")
-                + "=" + URLEncoder.encode(filter.getLastDateMonth(), "UTF-8");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtToGeoRadius", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getToGeoRadius(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtWeightFrom", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getWeightFrom(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtWeightTo", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getWeightTo(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtVolumeFrom", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getVolumeFrom(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtVolumeTo", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getVolumeTo(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$mselCarTypes$hdnSelItems", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getCarTypes(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$mselLoadTypes$hdnSelItems", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getLoadTypes(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtFirstDate", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getFirstDateDay(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$ddlFirstDate", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getFirstDateMonth(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$txtLastDate", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getLastDateDay(), "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$ddlLastDate", "windows-1251")
+                + "=" + URLEncoder.encode(filter.getLastDateMonth(), "windows-1251");
         data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$ddlSortingType", "windows-1251")
                 + "=" + URLEncoder.encode(filter.getSortingTypes(), "windows-1251");
         data += "&" + URLEncoder.encode("ctl00$cphMain$ctlSearch$ddlChangeDates", "windows-1251")
@@ -71,7 +71,7 @@ public  class SearchCargo  {
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "windows-1251"));
         String line;
         String page="";
-        while ((line = rd.readLine()) != null) {
+        while (rd.ready()) {
             page+=rd.readLine();
             page+="\n";
         }
