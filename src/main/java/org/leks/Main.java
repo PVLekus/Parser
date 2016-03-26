@@ -2,10 +2,11 @@ package org.leks;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.leks.impl.CargoFilterImpl;
 import org.leks.impl.SearchCargo;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -17,6 +18,10 @@ public class Main {
         CargoFilterImpl filter = new CargoFilterImpl();
         filter.setFromGeo("Уфа");
         filter.setToGeo("Москва");
+        filter.setFromGeoRadius("10");
+        filter.setToGeoRadius("10");
+
+        System.out.println(SearchCargo.getUrl(filter));
 
         String page = SearchCargo.getResultSearch(filter);
 
@@ -29,8 +34,15 @@ public class Main {
         System.out.println(content[1]);*/
 
         //testing JSOUP
-        Document doc = Jsoup.parse(new File("/home/lekus/ati/index.htm"),"UTF-8");
-        System.out.println(doc.toString());
+        Document doc = Jsoup.parse(page);
+        Elements elements = doc.getElementsByClass("sr-header");
+        Element element = doc.getElementById("ctl00_cphMain_rptEntities_ctl00_ctlOrderDetails_divLoadPrice");
+      /*  for (Element el:
+             elements) {
+            el.getElementById()
+        }*/
+        System.out.println(elements.get(0));
+        System.out.println(element.text());
 
     }
 }

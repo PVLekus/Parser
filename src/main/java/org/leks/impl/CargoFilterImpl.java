@@ -122,7 +122,10 @@ public class CargoFilterImpl implements CargoFilter {
 
     //do test
     public String getCarTypes() {
-        return String.valueOf(carTypes);
+        String type = "";
+        if (carTypes == 0) type = "";
+        else type = String.valueOf(carTypes);
+        return type;
     }
 
     public void setCarTypes(int carTypes) {
@@ -131,7 +134,10 @@ public class CargoFilterImpl implements CargoFilter {
 
     //do test
     public String getLoadTypes() {
-        return String.valueOf(loadTypes);
+        String type = "";
+        if (carTypes == 0) type = "";
+        else type = String.valueOf(carTypes);
+        return type;
     }
 
     public void setLoadTypes(int loadTypes) {
@@ -217,4 +223,6 @@ public class CargoFilterImpl implements CargoFilter {
     public void setState(String state) {
         this.state = state;
     }
+
+
 }
