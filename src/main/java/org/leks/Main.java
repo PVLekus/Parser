@@ -8,6 +8,7 @@ import org.leks.impl.CargoFilterImpl;
 import org.leks.impl.SearchCargo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by lekus on 22.03.16.
@@ -34,28 +35,20 @@ public class Main {
         System.out.println(content[1]);*/
 
         //testing JSOUP
-        /*Document doc = Jsoup.parse(page);
-        Elements elements = doc.getElementsByClass("sr-header");
-        Element element = doc.getElementById("ctl00_cphMain_rptEntities_ctl00_ctlOrderDetails_divLoadPrice");
-        for (Element el:
-             elements) {
-            el.getElementById()
-        }*/
+        ArrayList<String> cargos = new ArrayList<>();
+        cargos = SearchCargo.getListOfCargoElements(page);
+        System.out.println(cargos.size());
 
-        String[] str = page.split("<table class=\"sr-header\">");
-        Document document = Jsoup.parseBodyFragment(str[0]);
-        Element elementState = document.getElementById("__VIEWSTATE");
-        String state = elementState.attr("value");
-        Element element = document.getElementById("ctl00_cphMain_lblRowsCount");
-        int countPages = SearchCargo.getPageCount(element.text());
+        for (int i = 0; i < cargos.size(); i++) {
 
-        System.out.println(str[0]);
-        System.out.println(state);
-        System.out.println("countPages "  + countPages);
+            int num = i % 10;
+            String attr ="ctl00_cphMain_rptEntities_ctl0" + num + "_ctlOrderDetails_lblLoadNo";
 
+            Document doc = Jsoup.parseBodyFragment(cargos.get(i));
+            Element el = doc.getElementById(attr);
+            System.out.println(el.text());
 
-        /*System.out.println(elements.get(0));
-        System.out.println(element.text());
-*/
+        }
+
     }
 }

@@ -9,12 +9,5 @@ import static org.junit.Assert.*;
  */
 public class SearchCargoTest {
 
-    @Test
-    public void getPageCount() throws Exception {
 
-        String str = "17 res (123 str.)";
-        int countPages = SearchCargo.getPageCount(str);
-        assertEquals(123, countPages);
-
-    }
 }

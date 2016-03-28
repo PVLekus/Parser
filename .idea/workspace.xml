@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9ac492b-a578-4224-ae6a-2938ec07b58a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/leks/impl/CargoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/leks/interfaces/Cargo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/leks/Main.class" afterPath="$PROJECT_DIR$/target/classes/org/leks/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/leks/impl/SearchCargo.class" afterPath="$PROJECT_DIR$/target/classes/org/leks/impl/SearchCargo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/leks/Main.java" afterPath="$PROJECT_DIR$/src/main/java/org/leks/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/leks/impl/SearchCargo.java" afterPath="$PROJECT_DIR$/src/main/java/org/leks/impl/SearchCargo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java" />
     </list>
     <ignored path="atiparser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/leks/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+            <state relative-caret-position="381">
+              <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,11 +49,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchCargo.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SearchCargoTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchCargo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/leks/impl/SearchCargo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="188" column="21" selection-start-line="188" selection-start-column="21" selection-end-line="188" selection-end-column="21" />
+            <state relative-caret-position="292">
+              <caret line="224" column="5" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getResultSearch#0;class#SearchCargo#0" expanded="false" />
@@ -67,8 +71,8 @@
                 <element signature="method#getPageCount#0;class#SearchCargo#0" expanded="false" />
                 <element signature="method#getState#0;class#SearchCargo#0" expanded="false" />
                 <element signature="method#getSearchUrl#0;class#SearchCargo#0" expanded="false" />
-                <element signature="e#10550#10551#0" expanded="true" />
-                <element signature="e#10575#10576#0" expanded="true" />
+                <element signature="method#getSplitList#0;class#SearchCargo#0" expanded="false" />
+                <element signature="method#getNextPage#0;class#SearchCargo#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -123,9 +127,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/leks/impl/CargoFilterImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/leks/impl/CargoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/leks/impl/SearchCargo.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/leks/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/leks/impl/SearchCargo.java" />
       </list>
     </option>
   </component>
@@ -871,8 +875,8 @@
             <element signature="method#getPageCount#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getState#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getSearchUrl#0;class#SearchCargo#0" expanded="false" />
-            <element signature="e#10550#10551#0" expanded="true" />
-            <element signature="e#10575#10576#0" expanded="true" />
+            <element signature="method#getSplitList#0;class#SearchCargo#0" expanded="false" />
+            <element signature="method#getNextPage#0;class#SearchCargo#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -926,8 +930,8 @@
             <element signature="method#getPageCount#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getState#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getSearchUrl#0;class#SearchCargo#0" expanded="false" />
-            <element signature="e#10550#10551#0" expanded="true" />
-            <element signature="e#10575#10576#0" expanded="true" />
+            <element signature="method#getSplitList#0;class#SearchCargo#0" expanded="false" />
+            <element signature="method#getNextPage#0;class#SearchCargo#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -981,8 +985,8 @@
             <element signature="method#getPageCount#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getState#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getSearchUrl#0;class#SearchCargo#0" expanded="false" />
-            <element signature="e#10550#10551#0" expanded="true" />
-            <element signature="e#10575#10576#0" expanded="true" />
+            <element signature="method#getSplitList#0;class#SearchCargo#0" expanded="false" />
+            <element signature="method#getNextPage#0;class#SearchCargo#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1036,8 +1040,8 @@
             <element signature="method#getPageCount#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getState#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getSearchUrl#0;class#SearchCargo#0" expanded="false" />
-            <element signature="e#10550#10551#0" expanded="true" />
-            <element signature="e#10575#10576#0" expanded="true" />
+            <element signature="method#getSplitList#0;class#SearchCargo#0" expanded="false" />
+            <element signature="method#getNextPage#0;class#SearchCargo#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1124,14 +1128,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/leks/interfaces/Cargo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1168,20 +1164,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/leks/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/leks/impl/SearchCargo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="188" column="21" selection-start-line="188" selection-start-column="21" selection-end-line="188" selection-end-column="21" />
+        <state relative-caret-position="292">
+          <caret line="224" column="5" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getResultSearch#0;class#SearchCargo#0" expanded="false" />
@@ -1189,8 +1175,26 @@
             <element signature="method#getPageCount#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getState#0;class#SearchCargo#0" expanded="false" />
             <element signature="method#getSearchUrl#0;class#SearchCargo#0" expanded="false" />
-            <element signature="e#10550#10551#0" expanded="true" />
-            <element signature="e#10575#10576#0" expanded="true" />
+            <element signature="method#getSplitList#0;class#SearchCargo#0" expanded="false" />
+            <element signature="method#getNextPage#0;class#SearchCargo#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/leks/impl/SearchCargoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/leks/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="47" column="50" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
