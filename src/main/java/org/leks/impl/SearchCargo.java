@@ -1,9 +1,15 @@
 package org.leks.impl;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lekus on 23.03.16.
@@ -133,6 +139,77 @@ public  class SearchCargo  {
                 + "=" + URLEncoder.encode("Найти груз", "windows-1251");
 
         return data;
+
+    }
+
+    public static int getPageCount(Document doc){
+
+        Element elementPages = doc.getElementById("ctl00_cphMain_lblRowsCount");
+        String countStr = elementPages.text();
+
+        String[] first = countStr.split("\\(");
+        String[] second = first[1].split(" ");
+        int pageCount = Integer.parseInt(second[0]);
+        return pageCount;
+
+    }
+
+    public static String getState(Document doc){
+
+        //get state
+        Element elementState = doc.getElementById("__VIEWSTATE");
+        return elementState.attr("value");
+
+
+    }
+
+    public static String getSearchUrl (Document doc) {
+
+        String url = "http://m.ati.su/Tables/";
+
+        //get search url for next page
+        Element elementSearchUrl = doc.getElementById("aspnetForm");
+        url += elementSearchUrl.attr("action");
+
+        return url;
+
+    }
+
+    public static ArrayList<String> getSplitList(ArrayList<String> list, String page) {
+
+        String[] listOfCargo = page.split("<table class=\"sr-header\">");
+
+        for (int i = 1; i < listOfCargo.length; i++) {
+            list.add(listOfCargo[i]);
+        }
+
+        return list;
+    }
+
+    //do this methods
+    public static String getNextPage(String state, String url){
+        return "";
+    }
+
+    public static ArrayList<String> getListOfCargoElements(String page){
+
+        ArrayList<String> list = new ArrayList<>();
+        String state;
+        String url;
+        Document doc = Jsoup.parse(page);
+
+        state = SearchCargo.getState(doc);
+        url = SearchCargo.getSearchUrl(doc);
+        int pageCount = SearchCargo.getPageCount(doc);
+
+        //add cargo elements from first page
+        list = SearchCargo.getSplitList(list, page);
+
+        for (int i = 1; i < pageCount; i++) {
+            //method to all next page
+        }
+
+        return list;
 
     }
 

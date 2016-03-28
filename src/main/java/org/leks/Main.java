@@ -34,15 +34,28 @@ public class Main {
         System.out.println(content[1]);*/
 
         //testing JSOUP
-        Document doc = Jsoup.parse(page);
+        /*Document doc = Jsoup.parse(page);
         Elements elements = doc.getElementsByClass("sr-header");
         Element element = doc.getElementById("ctl00_cphMain_rptEntities_ctl00_ctlOrderDetails_divLoadPrice");
-      /*  for (Element el:
+        for (Element el:
              elements) {
             el.getElementById()
         }*/
-        System.out.println(elements.get(0));
-        System.out.println(element.text());
 
+        String[] str = page.split("<table class=\"sr-header\">");
+        Document document = Jsoup.parseBodyFragment(str[0]);
+        Element elementState = document.getElementById("__VIEWSTATE");
+        String state = elementState.attr("value");
+        Element element = document.getElementById("ctl00_cphMain_lblRowsCount");
+        int countPages = SearchCargo.getPageCount(element.text());
+
+        System.out.println(str[0]);
+        System.out.println(state);
+        System.out.println("countPages "  + countPages);
+
+
+        /*System.out.println(elements.get(0));
+        System.out.println(element.text());
+*/
     }
 }
