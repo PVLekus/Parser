@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.leks.impl.CargoFill;
 import org.leks.impl.CargoFilterImpl;
 import org.leks.impl.SearchCargo;
 
@@ -18,37 +19,68 @@ public class Main {
 
         CargoFilterImpl filter = new CargoFilterImpl();
         filter.setFromGeo("Уфа");
-        filter.setToGeo("Москва");
-        filter.setFromGeoRadius("10");
+        filter.setToGeo("Пермь");
+        filter.setFromGeoRadius("250");
         filter.setToGeoRadius("10");
 
         System.out.println(SearchCargo.getUrl(filter));
 
         String page = SearchCargo.getResultSearch(filter);
 
-        /*FileWriter writer = new FileWriter("/home/lekus/ati/index.htm");
-        writer.write(page);
-        writer.close();
 
-        String[] content = page.split("<table class=\"sr-header\">");
-        System.out.println(content.length);
-        System.out.println(content[1]);*/
 
         //testing JSOUP
-        ArrayList<String> cargos = new ArrayList<>();
+
+        Elements cargos = new Elements();
         cargos = SearchCargo.getListOfCargoElements(page);
         System.out.println(cargos.size());
 
         for (int i = 0; i < cargos.size(); i++) {
-
             int num = i % 10;
-            String attr ="ctl00_cphMain_rptEntities_ctl0" + num + "_ctlOrderDetails_lblLoadNo";
+            String attr = "ctl00_cphMain_rptEntities_ctl0" + num + "_ctlOrderDetails_lblLoadNo";
 
-            Document doc = Jsoup.parseBodyFragment(cargos.get(i));
-            Element el = doc.getElementById(attr);
-            System.out.println(el.text());
+            Element el = cargos.get(i).getElementById(attr);
+            //System.out.print(el.text() + " ");
+            System.out.print(CargoFill.getWay(cargos.get(i), num) + " ");
+            System.out.print(CargoFill.getAllWay(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblFrom(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblFromRegion(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblFromDistance(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblTo(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblToRegion(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblToDistance(cargos.get(i), num));
+            //System.out.print(" " + CargoFill.getAdvDate(cargos.get(i), num));
+            //System.out.print(" " + CargoFill.getAdvChangeDate(cargos.get(i), num));
+            //System.out.print(" " + CargoFill.getCargoParam(cargos.get(i)));
+            //System.out.print(" " + CargoFill.getCargoType(cargos.get(i)));
+            //System.out.print(" " + CargoFill.getWayDate(cargos.get(i)));
+            //System.out.print(" " + CargoFill.getCarType(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getCarLoading(cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLoadPrice( cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLoadPriceWithNds (cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLoadPriceWithoutNds (cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblPrePay (cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblPayDays (cargos.get(i), num));
+            System.out.print(" " + CargoFill.getLblDirectDog (cargos.get(i), num));
 
+            System.out.println("");
         }
+
+
+
+
+
+
+
+
+        /*Document document = Jsoup.parse(page);
+        Elements elements = document.getElementsByClass("search-result");
+        System.out.println(elements.size());
+        for (Element el:
+                elements) {
+            Elements elements2 = el.getElementsByTag("div");
+            System.out.println(elements2.get(0).attr("id"));
+        }*/
 
     }
 }

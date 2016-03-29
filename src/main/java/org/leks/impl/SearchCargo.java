@@ -3,8 +3,10 @@ package org.leks.impl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -18,6 +20,8 @@ public  class SearchCargo  {
 
 
     public static String getResultSearch(CargoFilterImpl filter) throws IOException {
+
+        String page;
 
         String data = URLEncoder.encode("ctl00_tksm_HiddenField", "windows-1251")
                 + "=" + URLEncoder.encode(filter.getHiddenField(), "windows-1251");
@@ -67,23 +71,7 @@ public  class SearchCargo  {
                 + "=" + URLEncoder.encode("Найти груз", "windows-1251");
 
 
-        URL url = new URL("http://m.ati.su/Tables/Default.aspx?EntityType=Load");
-        URLConnection conn = url.openConnection();
-        conn.setDoOutput(true);
-        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-        wr.write(data);
-        wr.flush();
-
-        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "windows-1251"));
-        String page="";
-        while (rd.ready()) {
-            page+=rd.readLine();
-            page+="\n";
-        }
-
-        wr.close();
-        rd.close();
-
+        page = SearchCargo.sendPost("http://m.ati.su/Tables/Default.aspx?EntityType=Load", data);
 
         return page;
     }
@@ -174,35 +162,9 @@ public  class SearchCargo  {
 
     }
 
+    public  static String sendPost (String pageUrl, String data) throws IOException {
 
-    public static ArrayList<String> getSplitList(ArrayList<String> list, String page) {
-
-        String[] listOfCargo = page.split("<table class=\"sr-header\">");
-
-        for (int i = 1; i < listOfCargo.length; i++) {
-            list.add(listOfCargo[i]);
-        }
-
-        return list;
-    }
-
-
-    public static String getNextPage(String state, String urlSearch) throws IOException {
-
-        String data = URLEncoder.encode("ctl00_tksm_HiddenField", "windows-1251")
-                + "=" + URLEncoder.encode(";;AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e:ru-RU:1547e793-5b7e-48fe-8490-03a375b13a33:e4031945:475a4ef5:effe2a26:3ac3e789", "windows-1251");
-        data += "&" + URLEncoder.encode("__EVENTTARGET", "windows-1251")
-                + "=" + URLEncoder.encode("ctl00$cphMain$lbtNextPage", "windows-1251");
-        data += "&" + URLEncoder.encode("__EVENTARGUMENT", "windows-1251")
-                + "=" + URLEncoder.encode("", "windows-1251");
-        data += "&" + URLEncoder.encode("__VIEWSTATE", "windows-1251")
-                + "=" + URLEncoder.encode(state, "windows-1251");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlChangeCookieParams$ddlSortingType", "windows-1251")
-                + "=" + URLEncoder.encode("2", "windows-1251");
-        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlChangeCookieParams$ddlChangeDates", "windows-1251")
-                + "=" + URLEncoder.encode("0", "windows-1251");
-
-        URL url = new URL(urlSearch);
+        URL url = new URL(pageUrl);
         URLConnection conn = url.openConnection();
         conn.setDoOutput(true);
         OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -222,9 +184,51 @@ public  class SearchCargo  {
         return page;
     }
 
-    public static ArrayList<String> getListOfCargoElements(String page) throws IOException {
+    public static Elements getListElements(Elements list, String page){
 
-        ArrayList<String> list = new ArrayList<>();
+        Document document = Jsoup.parse(page);
+        Elements elements = document.getElementsByClass("search-result");
+        list.addAll(elements);
+        return list;
+
+    }
+
+    public static ArrayList<String> getSplitList(ArrayList<String> list, String page) {
+
+        String[] listOfCargo = page.split("<table class=\"sr-header\">");
+
+        for (int i = 1; i < listOfCargo.length; i++) {
+            list.add(listOfCargo[i]);
+        }
+
+        return list;
+    }
+
+    public static String getNextPage(String state, String urlSearch) throws IOException {
+
+        String page;
+
+        String data = URLEncoder.encode("ctl00_tksm_HiddenField", "windows-1251")
+                + "=" + URLEncoder.encode(";;AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e:ru-RU:1547e793-5b7e-48fe-8490-03a375b13a33:e4031945:475a4ef5:effe2a26:3ac3e789", "windows-1251");
+        data += "&" + URLEncoder.encode("__EVENTTARGET", "windows-1251")
+                + "=" + URLEncoder.encode("ctl00$cphMain$lbtNextPage", "windows-1251");
+        data += "&" + URLEncoder.encode("__EVENTARGUMENT", "windows-1251")
+                + "=" + URLEncoder.encode("", "windows-1251");
+        data += "&" + URLEncoder.encode("__VIEWSTATE", "windows-1251")
+                + "=" + URLEncoder.encode(state, "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlChangeCookieParams$ddlSortingType", "windows-1251")
+                + "=" + URLEncoder.encode("2", "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlChangeCookieParams$ddlChangeDates", "windows-1251")
+                + "=" + URLEncoder.encode("0", "windows-1251");
+
+        page = SearchCargo.sendPost(urlSearch, data);
+
+        return page;
+    }
+
+    public static Elements getListOfCargoElements(String page) throws IOException {
+
+        Elements list = new Elements();
         String state;
         String url;
         String nextPage;
@@ -235,14 +239,14 @@ public  class SearchCargo  {
         int pageCount = SearchCargo.getPageCount(doc);
 
         //add cargo elements from first page
-        list = SearchCargo.getSplitList(list, page);
+        list = SearchCargo.getListElements(list, page);
 
         for (int i = 1; i < pageCount; i++) {
             //method to all next page
             nextPage = SearchCargo.getNextPage(state, url);
             Document nextDoc = Jsoup.parse(nextPage);
             state = SearchCargo.getState(nextDoc);
-            list = getSplitList(list, nextPage);
+            list = getListElements(list, nextPage);
         }
 
         return list;
