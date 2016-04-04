@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lekus on 23.03.16.
@@ -22,6 +23,7 @@ public  class SearchCargo  {
     public static String getResultSearch(CargoFilterImpl filter) throws IOException {
 
         String page;
+
 
         String data = URLEncoder.encode("ctl00_tksm_HiddenField", "windows-1251")
                 + "=" + URLEncoder.encode(filter.getHiddenField(), "windows-1251");
@@ -171,6 +173,16 @@ public  class SearchCargo  {
         wr.write(data);
         wr.flush();
 
+        //метод для куки
+        Map<String, List<String>> map = conn.getHeaderFields();
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            System.out.println("Key : " + entry.getKey() +
+                    ", Value : " + entry.getValue());
+        }
+        String cookie = conn.getHeaderField("Set-Cookie");
+        System.out.println(cookie);
+
+
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "windows-1251"));
         String page="";
         while (rd.ready()) {
@@ -182,6 +194,35 @@ public  class SearchCargo  {
         rd.close();
 
         return page;
+    }
+    //доделать
+    public static String getAuthPage (String login, String pass) throws IOException {
+
+        String page;
+        String vs = "/wEPDwULLTE2NDQ5MTQxNDQPZBYCZg9kFgQCAQ8WAh4HVmlzaWJsZWhkAgIPZBYGAgMPDxYIHghDc3NDbGFzcwUFbG9naW4eCkxvZ291dFRleHQFCtCS0YvQudGC0LgeCUxvZ2luVGV4dAUK0JLQvtC50YLQuB4EXyFTQgICZGQCBQ8PFgIfAGhkZAIJD2QWAgIBD2QWAmYPZBYKAgEPDxYCHgxFcnJvck1lc3NhZ2UFO9Cf0L7Qu9C1INC+0LHRj9C30LDRgtC10LvRjNC90L4g0LTQu9GPINC30LDQv9C+0LvQvdC10L3QuNGPZGQCAw8PFgIfBQU70J/QvtC70LUg0L7QsdGP0LfQsNGC0LXQu9GM0L3QviDQtNC70Y8g0LfQsNC/0L7Qu9C90LXQvdC40Y9kZAIED2QWAmYPZBYGZg8VAU7QktCy0LXQtNC40YLQtSDRgdC40LzQstC+0LvRiywg0LjQt9C+0LHRgNCw0LbQtdC90L3Ri9C1INC90LAg0LrQsNGA0YLQuNC90LrQtTpkAgEPZBYCZg9kFgYCBw9kFgICAQ8WAh4FdGl0bGUFI9CU0YDRg9Cz0L7QtSDQuNC30L7QsdGA0LDQttC10L3QuNC1ZAILDxYCHgV2YWx1ZQUDMjQwZAINDxYCHwdkZAIDDw8WAh4EVGV4dAUs0J3QtdCy0LXRgNC90L4g0LLQstC10LTQtdC90Ysg0YHQuNC80LLQvtC70YtkZAIGDw8WAh8IBSDQkNCy0YLQvtGA0LjQt9C40YDQvtCy0LDRgtGM0YHRj2RkAgcPEA8WAh8IBRvQt9Cw0L/QvtC80L3QuNGC0Ywg0LzQtdC90Y9kZGRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBRpjdGwwMCRjdGxMb2dpblN0YXR1cyRjdGwwMQUaY3RsMDAkY3RsTG9naW5TdGF0dXMkY3RsMDMFIWN0bDAwJGNwaE1haW4kY3RsTG9naW4kUmVtZW1iZXJNZQ==";
+        String data = URLEncoder.encode("ctl00_tksm_HiddenField", "windows-1251")
+                + "=" + URLEncoder.encode(";;AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e:ru-RU:1547e793-5b7e-48fe-8490-03a375b13a33:e4031945", "windows-1251");
+        data += "&" + URLEncoder.encode("__EVENTTARGET", "windows-1251")
+                + "=" + URLEncoder.encode("", "windows-1251");
+        data += "&" + URLEncoder.encode("__EVENTARGUMENT", "windows-1251")
+                + "=" + URLEncoder.encode("", "windows-1251");
+        data += "&" + URLEncoder.encode("__VIEWSTATE", "windows-1251")
+                + "=" + URLEncoder.encode(vs, "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlLogin$UserName", "windows-1251")
+            + "=" + URLEncoder.encode(login, "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlLogin$Password", "windows-1251")
+            + "=" + URLEncoder.encode(pass, "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlLogin$btnLogin", "windows-1251")
+            + "=" + URLEncoder.encode("Авторизоваться", "windows-1251");
+        data += "&" + URLEncoder.encode("ctl00$cphMain$ctlLogin$RememberMe", "windows-1251")
+            + "=" + URLEncoder.encode("on", "windows-1251");
+
+        page = SearchCargo.sendPost("http://m.ati.su/Login/Login.aspx?ReturnUrl=%2f", data);
+
+        return page;
+
+
+
     }
 
     public static Elements getListElements(Elements list, String page){

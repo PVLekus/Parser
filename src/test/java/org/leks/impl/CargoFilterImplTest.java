@@ -1,6 +1,7 @@
 package org.leks.impl;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**

@@ -23,15 +23,17 @@ public class Main {
         filter.setFromGeoRadius("250");
         filter.setToGeoRadius("10");
 
-        System.out.println(SearchCargo.getUrl(filter));
+        //System.out.println(SearchCargo.getUrl(filter));
 
-        String page = SearchCargo.getResultSearch(filter);
+        //String page = SearchCargo.getResultSearch(filter);
 
+        String auth = SearchCargo.getAuthPage("valdimirp", "VikaVera0804");
+        System.out.println(auth);
 
 
         //testing JSOUP
 
-        Elements cargos = new Elements();
+        /*Elements cargos = new Elements();
         cargos = SearchCargo.getListOfCargoElements(page);
         System.out.println(cargos.size());
 
@@ -64,7 +66,7 @@ public class Main {
             System.out.print(" " + CargoFill.getLblDirectDog (cargos.get(i), num));
 
             System.out.println("");
-        }
+        }*/
 
 
 
