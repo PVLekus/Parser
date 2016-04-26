@@ -12,6 +12,8 @@ public class CargoFilterImpl implements CargoFilter {
     private String eventTarget="";
     private String eventArgument="";
 
+    private boolean rate = false;
+
 
     private String fromGeo="";
     private String fromGeoRadius="";
@@ -31,8 +33,8 @@ public class CargoFilterImpl implements CargoFilter {
     private int lastDateDay=0;
     private int lastDateMonth=0; //0-6
 
-    private int sortingTypes=1;
-    private int changeDate=3;
+    private int sortingTypes=2;
+    private int changeDate=0;
 
     public String getFromGeo() {
         return fromGeo;
@@ -197,7 +199,11 @@ public class CargoFilterImpl implements CargoFilter {
 
     //do test
     public String getChangeDate() {
-        return String.valueOf(changeDate);
+
+        String chage ="";
+        if (changeDate > 0) chage = String.valueOf(changeDate);
+
+        return chage;
     }
 
     public void setChangeDate(int changeDate) {
@@ -224,5 +230,11 @@ public class CargoFilterImpl implements CargoFilter {
         this.state = state;
     }
 
+    public boolean getRate() {
+        return rate;
+    }
 
+    public void setRate(boolean rate) {
+        this.rate = rate;
+    }
 }
